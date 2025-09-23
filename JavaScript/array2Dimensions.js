@@ -17,27 +17,46 @@
   Notes: 
   - tampikan expected output dengan console.log()
 */
-const expectedOutput = ["xyz", "xzy", "yxz", "yzx", "zxy", "zyx"];
-
-console.log(expectedOutput);
 
 function nilaiRataRataSiswa(data, nama) {
-  const siswa = data.find((d) => d[0] === nama);
+  let rataRata = 0;
 
-  const nilai = siswa.slice(1);
-  const jumlah = nilai.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][0] === nama) {
+      let jumlah = 0;
+      let banyakMapel = data[i].length - 1;
 
-  return (jumlah / nilai.length).toFixed(2);
+      for (let j = 1; j < data[i].length; j++) {
+        jumlah += data[i][j];
+      }
+
+      rataRata = jumlah / banyakMapel;
+    }
+  }
+
+  return rataRata;
 }
 
 function nilaiRataRataMataPelajaran(data, mapelIndex) {
-  const jumlah = data.reduce((total, d) => total + d[mapelIndex], 0);
+  let jumlah = 0;
 
-  return (jumlah / data.length).toFixed(2);
+  for (let i = 0; i < data.length; i++) {
+    jumlah += data[i][mapelIndex];
+  }
+
+  return jumlah / data.length;
 }
 
 function nilaiTertinggiMataPelajaran(data, mapelIndex) {
-  return Math.max(...data.map((d) => d[mapelIndex]));
+  let max = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][mapelIndex] > max) {
+      max = data[i][mapelIndex];
+    }
+  }
+
+  return max;
 }
 
 // CASE VALUE
